@@ -19,13 +19,21 @@ router.get('/firs',auth,async(req,res)=>{
     }
     catch(error){res.status(500).send(error)}
 })
-router.delete('/firs/:id',auth,async(req,res)=>{
-    const _id=req.params.id
-    try{
-       const fir = await Fir.findById(_id)
-       await fir.remove()
-       res.send(fir)
+router.patch('/firs/:id',auth,async (req,res)=>{
+    const updates = Object.keys(req.body)
+    const validupdates = ['status']
+    const isvalidupdates = updates.every((update)=>validupdates.includes(update))
+    if(!isvalidupdates){
+        return res.status(400).send('error:'+ 'Invalid Updates')
     }
-    catch(error){res.status(500).send(error)}
+    try{
+        const fir = await Fir.findById({_id:req.params.id})
+        if(!fir){
+            return res.status(404).send()
+        }
+        updates.forEach((update)=>task[update]=req.body[update])
+        await fir.save()
+        res.send(fir)
+    }catch(e){res.status(400).send(e)}
 })
 module.exports = router
