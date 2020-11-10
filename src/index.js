@@ -10,4 +10,3 @@ app.use(firrouter)
 app.listen(port,()=>{
     console.log('Server setup in Port ' + port)
 })
-//3000
