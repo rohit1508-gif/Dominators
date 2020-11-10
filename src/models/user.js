@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
             throw new Error('Change your password')
         }
     }},
-    district:{type:String,required:true,trim:true},
+    district:{type:String,trim:true},
     tokens:[{token:{type:String,required:true}}]
 },
 {timestamps:true}
