@@ -31,7 +31,7 @@ router.patch('/firs/:id',auth,async (req,res)=>{
         if(!fir){
             return res.status(404).send()
         }
-        updates.forEach((update)=>task[update]=req.body[update])
+        updates.forEach((update)=>fir[update]=req.body[update])
         await fir.save()
         res.send(fir)
     }catch(e){res.status(400).send(e)}
