@@ -15,3 +15,4 @@ const firSchema = new mongoose.Schema({
 },{timestamps:true})
 const Fir = mongoose.model('Fir',firSchema)
 module.exports=Fir
+// 3000
